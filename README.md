@@ -16,13 +16,19 @@ open Rounds.xcodeproj
 
 Requires Xcode 26+, iOS 18+.
 
+In Debug builds you can jump straight to a screen with a launch argument
+(Xcode → Edit Scheme → Run → Arguments): `-startScreen onb|home|crew|map|profile|live|recap`.
+The gear menu on Profile also has prototype toggles (empty Home, replay onboarding).
+
 ## Structure
 
 ```
 project.yml            XcodeGen spec (source of truth for the Xcode project)
 Config/                xcconfig files; Secrets.xcconfig is gitignored
-Rounds/App             App entry point, Supabase client
-Rounds/Features        One folder per feature (Home, Crews, Nights, …)
+Rounds/App             App entry point, root/tab view, AppState, Supabase client
+Rounds/DesignSystem    Nocturne tokens (Theme) and shared components
+Rounds/Models          Models and prototype sample data
+Rounds/Features        One folder per feature (Home, Crew, LiveNight, Recap, …)
 RoundsTests            Swift Testing unit tests
 supabase/              Supabase CLI config + SQL migrations
 docs/                  Setup guides
