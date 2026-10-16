@@ -4,7 +4,7 @@ import SwiftUI
 struct RoundsApp: App {
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            RootView()
         }
     }
 }
