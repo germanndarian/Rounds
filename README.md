@@ -31,12 +31,17 @@ Rounds/Models          Models and prototype sample data
 Rounds/Features        One folder per feature (Home, Crew, LiveNight, Recap, …)
 RoundsTests            Swift Testing unit tests
 supabase/              Supabase CLI config + SQL migrations
-docs/                  Setup guides
 ```
 
 ## Backend
 
-See [docs/SUPABASE_SETUP.md](docs/SUPABASE_SETUP.md).
+[Supabase](https://supabase.com): Auth (Sign in with Apple), Postgres with Row Level Security,
+Storage for photos and Realtime for the live feed.
+
+1. `cp Config/Secrets.example.xcconfig Config/Secrets.xcconfig` and fill in the project URL and the
+   anon / publishable key (Dashboard → Project Settings → API). Never put the `service_role` key in the app.
+2. Schema changes are SQL migrations in `supabase/migrations/`: `supabase migration new <name>`,
+   write the SQL, then `supabase db push`.
 
 ## Workflow
 

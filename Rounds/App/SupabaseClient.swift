@@ -2,7 +2,7 @@ import Foundation
 import Supabase
 
 /// Shared Supabase client. Returns nil until Config/Secrets.xcconfig is filled in —
-/// see docs/SUPABASE_SETUP.md.
+/// see "Backend" in the README.
 enum Backend {
     static let client: SupabaseClient? = {
         guard
