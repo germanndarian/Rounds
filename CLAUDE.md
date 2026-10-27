@@ -4,9 +4,11 @@ A social drink tracker for nights out with friends. Native iPhone app (Swift / S
 Crews start a **Night** together, log drinks with one tap, share a live feed and disposable-camera photos,
 and wake up to a story-style **morning recap**. The product is framed around **memories and nights out, never volume**.
 
-What's built and what's next, and the Supabase setup guide, live outside this repo in the maintainer's personal OS:
-`~/Documents/Projects/personal-os/projects/Rounds/` (`Rounds roadmap.md`, `Rounds Supabase setup.md`).
-The roadmap there is ticked off automatically from commits. Keep docs out of this repo: README.md and this file only.
+Before starting, read the project note in the maintainer's personal OS:
+`~/Documents/Projects/personal-os/projects/Rounds/Rounds.md`, with the current state, what's next and the rules.
+The roadmap and the Supabase setup guide are in the same folder (`Rounds roadmap.md`, `Rounds Supabase setup.md`).
+The roadmap is ticked off automatically from commits. New docs go there too: this repo keeps only README.md and this file.
+Leave the sections marked `<!-- auto -->` alone, because the sync agent rewrites them.
 
 ## Hard rules
 
