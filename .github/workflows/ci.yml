@@ -6,15 +6,34 @@ on:
 jobs:
   build:
     name: Build & test
-    runs-on: macos-15
+    # The app needs Xcode 26, which is the default here. On macos-15 the default is Xcode 16.4,
+    # and the newer Xcodes installed next to it leave it without simulators.
+    runs-on: macos-26
     steps:
       - uses: actions/checkout@v4
       - name: Install XcodeGen
         run: brew install xcodegen
       - name: Generate project
         run: xcodegen generate
+      # Runner images don't all have the same iPhones, so take one this runner's Xcode can
+      # run the scheme on instead of naming a model.
+      - name: Pick a simulator
+        id: simulator
+        run: |
+          destinations=$(xcodebuild -showdestinations -scheme Rounds -skipPackagePluginValidation 2>/dev/null) || true
+          line=$(echo "$destinations" | sed '/Ineligible destinations/q' \
+            | grep 'platform:iOS Simulator' | grep 'name:iPhone' | grep -v 'error:' | head -1)
+          if [ -z "$line" ]; then
+            echo "$destinations"
+            echo "::error::$(xcodebuild -version | head -1) has no iPhone simulator that can run the Rounds scheme"
+            exit 1
+          fi
+          echo "$(xcodebuild -version | head -1), using$line"
+          echo "id=$(echo "$line" | sed -E 's/.*[{ ,]id:([^,}]+).*/\1/')" >> "$GITHUB_OUTPUT"
       - name: Build & test
+        env:
+          SIMULATOR: ${{ steps.simulator.outputs.id }}
         run: |
           xcodebuild test -scheme Rounds \
-            -destination 'platform=iOS Simulator,name=iPhone 16' \
+            -destination "platform=iOS Simulator,id=$SIMULATOR" \
             -skipPackagePluginValidation -quiet
