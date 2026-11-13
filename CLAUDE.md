@@ -16,7 +16,9 @@
 - Never use or reference the `ia24germannd` GitHub account.
 - `main` is protected: work on a branch (`feature/…`, `chore/…`, `fix/…`), open a PR, and the **Build & test** CI check must pass.
   No direct pushes, no force pushes. Merge with squash.
-- PR descriptions are short: up to three bullets, one **Checked:** line, and **For you:** or **Open:** only when needed.
+- PR descriptions are **short**: up to three bullets of what changed, in plain words, and one **Checked:** line (the tests and build that ran,
+  anything looked at by hand). Add **For you:** only when the maintainer has to do something, and **Open:** only when something is unfinished
+  or not checked, one line each. Nothing else: no why, no how it works, no step-by-step test plan.
 
 ## Secrets
 - Supabase URL and anon/publishable key live in `Config/Secrets.xcconfig` (gitignored). Never commit keys.
